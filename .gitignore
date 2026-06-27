@@ -1,3 +1,6 @@
+# Formatos especificos de arquivos que devem ser ignorados
+.mp4
+
 # segredos e ambiente
 .env
 
