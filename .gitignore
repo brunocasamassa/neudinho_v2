@@ -1,0 +1,16 @@
+# segredos e ambiente
+.env
+
+# dependencias
+node_modules/
+mock-dms/node_modules/
+
+# perfis de navegador / sessao do Playwright (contem cookies de login!)
+.chrome-dms/
+.pw-profile/
+
+# artefatos de mapeamento (HTML/prints capturados do DMS real)
+mapeamento/
+
+# scripts temporarios de sondagem
+scripts/_*.mjs
