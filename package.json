@@ -2,12 +2,13 @@
   "name": "nf-automacao",
   "version": "1.0.0",
   "type": "module",
-  "description": "Automacao de entrada de NFS-e no DMS: Telegram -> extracao -> IA -> Playwright",
+  "description": "DMS invoice-entry automation: Telegram -> Playwright (real Chrome via CDP)",
   "scripts": {
     "start": "node index.js",
     "webhook": "node webhook.js",
-    "teste": "node scripts/teste-pipeline.js",
-    "gerar-pdf": "node scripts/gerar-pdf.js"
+    "test-dms": "node scripts/test-dms.js",
+    "test-pipeline": "node scripts/test-pipeline.js",
+    "generate-pdf": "node scripts/generate-pdf.js"
   },
   "dependencies": {
     "grammy": "^1.30.0",

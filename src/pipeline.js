@@ -1,16 +1,17 @@
-// Orquestra as etapas que o n8n faria (menos o gatilho e a aprovacao,
-// que ficam no bot do Telegram). Duas funcoes, em torno da aprovacao humana.
-import { extrairDeBuffer } from './extrair.js';
-import { estruturarCampos } from './ia.js';
-import { lancarNoDMS } from './lancar.js';
+// Orchestrates the steps n8n would do (minus the trigger and the approval, which
+// live in the Telegram bot). Two functions, around the human approval.
+// (Legacy PDF pipeline — kept for reference; the live flow is by invoice number.)
+import { extractFromBuffer } from './extract.js';
+import { structureFields } from './ai.js';
+import { launchInDMS } from './launch.js';
 
-// PDF -> campos validados (extracao + IA)
-export async function prepararNota(pdfBuffer) {
-  const extraido = await extrairDeBuffer(pdfBuffer);
-  return estruturarCampos(extraido);
+// PDF -> validated fields (extraction + AI)
+export async function prepareInvoice(pdfBuffer) {
+  const extracted = await extractFromBuffer(pdfBuffer);
+  return structureFields(extracted);
 }
 
-// campos -> lancamento no DMS via Playwright
-export async function lancarNota(campos) {
-  return lancarNoDMS(campos);
+// fields -> launch in the DMS via Playwright
+export async function launchInvoice(fields) {
+  return launchInDMS(fields);
 }

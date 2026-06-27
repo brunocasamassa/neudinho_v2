@@ -1,12 +1,12 @@
-// Gera uma NFS-e (nota de SERVICO) falsa em PDF espelhando o exemplo do Neuds:
-// "Mao de obra pedreiro, 400 reais, ISS 6%". Edite e rode pra criar variacoes.
+// Generates a fake NFS-e (SERVICE invoice) PDF mirroring the sample:
+// "bricklayer labor, 400 reais, ISS 6%". Edit and run to create variations.
 import PDFDocument from 'pdfkit';
 import { createWriteStream } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const saida = fileURLToPath(new URL('../exemplos/nf-exemplo.pdf', import.meta.url));
+const output = fileURLToPath(new URL('../exemplos/nf-exemplo.pdf', import.meta.url));
 const doc = new PDFDocument({ size: 'A4', margin: 50 });
-doc.pipe(createWriteStream(saida));
+doc.pipe(createWriteStream(output));
 
 doc.fontSize(14).text('NOTA FISCAL DE SERVIÇOS ELETRÔNICA - NFS-e', { align: 'center' });
 doc.moveDown();
@@ -33,4 +33,4 @@ doc.text('Alíquota ISS: 6%');
 doc.text('Valor ISS: R$ 24,00');
 
 doc.end();
-console.log('PDF gerado em', saida);
+console.log('PDF gerado em', output);

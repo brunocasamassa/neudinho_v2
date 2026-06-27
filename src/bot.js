@@ -1,67 +1,67 @@
-// GATILHO + APROVACAO no Telegram (grammy).
-// Novo fluxo: voce envia o NUMERO da nota; o bot pede confirmacao e dispara o
-// lancamento no DMS (login -> "Lancamento de Entrada" -> "Inserir" -> preenche
-// Natureza/Tipo fixos -> busca a nota pelo numero -> seleciona). Nao salva.
+// TRIGGER + APPROVAL on Telegram (grammy).
+// New flow: you send the invoice NUMBER; the bot asks for confirmation and fires
+// the launch in the DMS (login -> "Lancamento de Entrada" -> "Inserir" -> fills the
+// fixed Nature/Type -> searches the invoice by number -> selects it). Does not save.
 import { Bot, InlineKeyboard } from 'grammy';
 import { config } from './config.js';
-import { lancarPorNumero } from './lancar.js';
+import { launchByNumber } from './launch.js';
 
-export function criarBot() {
+export function createBot() {
   if (!config.telegram.token) {
     throw new Error('TELEGRAM_TOKEN vazio. Crie o bot no @BotFather e preencha o .env.');
   }
   const bot = new Bot(config.telegram.token);
 
-  // /start mostra o chat id (pra preencher TELEGRAM_APPROVER_CHAT_ID)
+  // /start shows the chat id (to fill TELEGRAM_APPROVER_CHAT_ID)
   bot.command('start', (ctx) =>
     ctx.reply(
       `Bot de lançamento de NF ativo.\nSeu chat id é: ${ctx.chat.id}\n\n` +
       `Envie o *número da nota* (ex: 10050) para lançar no DMS.`,
       { parse_mode: 'Markdown' }));
 
-  // GATILHO: mensagem de texto com o numero da nota.
+  // TRIGGER: text message with the invoice number.
   bot.on('message:text', async (ctx) => {
-    const texto = ctx.message.text.trim();
-    if (texto.startsWith('/')) return; // deixa os comandos para os outros handlers
-    const numero = (texto.match(/\d+/) || [])[0];
-    if (!numero) {
+    const text = ctx.message.text.trim();
+    if (text.startsWith('/')) return; // leave commands to the other handlers
+    const number = (text.match(/\d+/) || [])[0];
+    if (!number) {
       return ctx.reply('Envie o *número da nota* (ex: 10050).', { parse_mode: 'Markdown' });
     }
 
-    // sem aprovacao: dispara direto
-    if (!config.fluxo.requireApproval) return executarPorNumero(ctx, numero);
+    // no approval: fire directly
+    if (!config.flow.requireApproval) return executeByNumber(ctx, number);
 
-    // com aprovacao: confirma com botoes
-    const teclado = new InlineKeyboard()
-      .text('✅ Lançar', `num-ok:${numero}`)
-      .text('❌ Cancelar', `num-no:${numero}`);
+    // with approval: confirm with buttons
+    const keyboard = new InlineKeyboard()
+      .text('✅ Lançar', `num-ok:${number}`)
+      .text('❌ Cancelar', `num-no:${number}`);
     await ctx.reply(
-      `Lançar a nota *${numero}* no DMS?\n` +
+      `Lançar a nota *${number}* no DMS?\n` +
       `• Natureza: 10 - COMPRA DE MERCADORIA PARA REVENDA\n` +
       `• Tipo: 2 - COMPRA DA FÁBRICA`,
-      { parse_mode: 'Markdown', reply_markup: teclado });
+      { parse_mode: 'Markdown', reply_markup: keyboard });
   });
 
-  // PDF nao e mais o gatilho — orienta o usuario.
+  // PDF is no longer the trigger — guide the user.
   bot.on('message:document', (ctx) =>
     ctx.reply('Agora o lançamento é pelo *número da nota*. Me envie só o número (ex: 10050).',
       { parse_mode: 'Markdown' }));
 
-  // clique nos botoes de confirmacao
+  // click on the confirmation buttons
   bot.callbackQuery(/^num-(ok|no):(.+)$/, async (ctx) => {
-    const acao = ctx.match[1];
-    const numero = ctx.match[2];
+    const action = ctx.match[1];
+    const number = ctx.match[2];
     await ctx.answerCallbackQuery();
-    if (acao === 'no') return ctx.reply('❌ Cancelado.');
-    await executarPorNumero(ctx, numero);
+    if (action === 'no') return ctx.reply('❌ Cancelado.');
+    await executeByNumber(ctx, number);
   });
 
   bot.catch((err) => console.error('Erro no bot:', err));
   return bot;
 }
 
-async function executarPorNumero(ctx, numero) {
-  await ctx.reply(`⏳ Lançando a nota ${numero} no DMS... (pode levar ~40s)`);
-  const r = await lancarPorNumero(numero);
-  await ctx.reply(`${r.status === 'ok' ? '✅' : '⚠️'} ${r.mensagem}`);
+async function executeByNumber(ctx, number) {
+  await ctx.reply(`⏳ Lançando a nota ${number} no DMS... (pode levar ~40s)`);
+  const result = await launchByNumber(number);
+  await ctx.reply(`${result.status === 'ok' ? '✅' : '⚠️'} ${result.message}`);
 }

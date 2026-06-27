@@ -1,12 +1,14 @@
+#Arquivos de LLMs
+.claude
+
 # Formatos especificos de arquivos que devem ser ignorados
-.mp4
+*.mp4
 
 # segredos e ambiente
 .env
 
 # dependencias
 node_modules/
-mock-dms/node_modules/
 
 # perfis de navegador / sessao do Playwright (contem cookies de login!)
 .chrome-dms/

@@ -9,11 +9,6 @@
 module.exports = {
   apps: [
     {
-      name: 'mock-dms',
-      script: 'server.js',
-      cwd: './mock-dms',
-    },
-    {
       name: 'nf-bot',
       script: 'index.js',   // troque para 'webhook.js' na VPS com dominio
       cwd: './',

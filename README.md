@@ -41,9 +41,9 @@ cp .env.example .env     # preencha DMS_USER, DMS_PASS e TELEGRAM_TOKEN
 ```bash
 npm start                            # sobe o bot; mande o número da nota no Telegram
 
-node scripts/teste-numero.js 10050        # testa o fluxo completo (sem Telegram)
-node scripts/teste-numero.js 10050 --dry  # só LOCALIZA a nota (não seleciona)
-node scripts/mapear-dms.js                # re-mapeia o DMS e salva HTML/prints em mapeamento/
+node scripts/test-number.js 10050        # testa o fluxo completo (sem Telegram)
+node scripts/test-number.js 10050 --dry  # só LOCALIZA a nota (não seleciona)
+node scripts/map-dms.js                  # re-mapeia o DMS e salva HTML/prints em mapeamento/
 ```
 
 A 1ª vez abre uma janela do Chrome com um perfil dedicado (`.chrome-dms/`) que
@@ -93,16 +93,16 @@ de **Salvar**. ⚠️ Por segurança o fluxo nunca clica Salvar; a flag `DMS_CON
 │   ├── config.js           ← lê o .env
 │   ├── bot.js              ← Telegram: recebe o número, confirma, dispara
 │   ├── dms-browser.js      ← Chrome real via CDP + login (resolve o Cloudflare)
-│   └── lancar.js           ← fluxo no DMS (login → … → seleciona a nota)
+│   └── launch.js           ← fluxo no DMS (login → … → seleciona a nota)
 ├── scripts/
-│   ├── teste-numero.js     ← roda o fluxo por número (sem Telegram)
-│   ├── teste-dms.js        ← smoke test: login → Lançamento → Inserir
-│   └── mapear-dms.js       ← (re)mapeia o DMS e salva HTML/prints
+│   ├── test-number.js      ← roda o fluxo por número (sem Telegram)
+│   ├── test-dms.js         ← smoke test: login → Lançamento → Inserir
+│   └── map-dms.js          ← (re)mapeia o DMS e salva HTML/prints
 └── mapeamento/             ← HTML/prints capturados do DMS (gitignored)
 ```
 
-> **Legado** (não usado no fluxo atual): `src/extrair.js`, `src/ia.js`,
-> `src/pipeline.js`, `mock-dms/`, `exemplos/` — eram a esteira por PDF + DMS falso.
+> **Legado** (não usado no fluxo atual): `src/extract.js`, `src/ai.js`,
+> `src/pipeline.js` — eram a esteira por PDF.
 
 ## Variáveis do .env
 

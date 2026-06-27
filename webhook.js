@@ -1,13 +1,13 @@
-// Ponto de entrada para a VPS — bot via WEBHOOK (em vez de polling).
-// O Telegram envia os updates para https://SEU_DOMINIO<WEBHOOK_PATH>.
-// Requer HTTPS público apontando pra esta VPS (use Caddy/Nginx como reverse
-// proxy, ou cloudflared/ngrok pra testar um túnel rápido).
+// Entry point for the VPS — bot via WEBHOOK (instead of polling).
+// Telegram sends the updates to https://YOUR_DOMAIN<WEBHOOK_PATH>.
+// Requires public HTTPS pointing to this VPS (use Caddy/Nginx as a reverse
+// proxy, or cloudflared/ngrok for a quick test tunnel).
 import express from 'express';
 import { webhookCallback } from 'grammy';
-import { criarBot } from './src/bot.js';
+import { createBot } from './src/bot.js';
 import { config } from './src/config.js';
 
-const bot = criarBot();
+const bot = createBot();
 await bot.init();
 
 const app = express();
