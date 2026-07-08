@@ -1,0 +1,8 @@
+2026/06/27-20:15:23.881 6370 Reusing MANIFEST C:\Users\bruno\Documents\neudinho_v2\nf-automacao\.chrome-dms\Default\Local Storage\leveldb/MANIFEST-000001
+2026/06/27-20:15:23.885 6370 Recovering log #29
+2026/06/27-20:15:23.888 6370 Reusing old log C:\Users\bruno\Documents\neudinho_v2\nf-automacao\.chrome-dms\Default\Local Storage\leveldb/000029.log 
+2026/06/27-20:16:23.895 9b7c Level-0 table #33: started
+2026/06/27-20:16:23.898 9b7c Level-0 table #33: 79834 bytes OK
+2026/06/27-20:16:23.899 9b7c Delete type=0 #29
+2026/06/27-20:30:03.858 8588 Level-0 table #35: started
+2026/06/27-20:30:03.865 8588 Level-0 table #35: 79552 bytes OK

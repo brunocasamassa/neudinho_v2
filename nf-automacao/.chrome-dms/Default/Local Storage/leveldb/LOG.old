@@ -1,0 +1,8 @@
+2026/06/27-19:03:26.031 3d4 Reusing MANIFEST C:\Users\bruno\Documents\neudinho_v2\nf-automacao\.chrome-dms\Default\Local Storage\leveldb/MANIFEST-000001
+2026/06/27-19:03:26.035 3d4 Recovering log #23
+2026/06/27-19:03:26.036 3d4 Level-0 table #27: started
+2026/06/27-19:03:26.052 3d4 Level-0 table #27: 79552 bytes OK
+2026/06/27-19:03:26.055 3d4 Delete type=0 #23
+2026/06/27-19:04:26.062 3d08 Level-0 table #30: started
+2026/06/27-19:04:26.080 3d08 Level-0 table #30: 79630 bytes OK
+2026/06/27-19:04:26.085 3d08 Delete type=0 #28

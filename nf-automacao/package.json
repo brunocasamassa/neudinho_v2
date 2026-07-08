@@ -1,0 +1,21 @@
+{
+  "name": "nf-automacao",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DMS invoice-entry automation: Telegram -> Playwright (real Chrome via CDP)",
+  "scripts": {
+    "start": "node index.js",
+    "webhook": "node webhook.js",
+    "test-dms": "node scripts/test-dms.js",
+    "test-pipeline": "node scripts/test-pipeline.js",
+    "generate-pdf": "node scripts/generate-pdf.js"
+  },
+  "dependencies": {
+    "grammy": "^1.30.0",
+    "playwright": "^1.48.0",
+    "pdfjs-dist": "^4.10.38",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pdfkit": "^0.15.0"
+  }
+}

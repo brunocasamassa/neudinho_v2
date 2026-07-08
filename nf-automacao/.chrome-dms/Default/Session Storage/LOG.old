@@ -1,0 +1,14 @@
+2026/06/27-19:03:26.105 3d4 Reusing MANIFEST C:\Users\bruno\Documents\neudinho_v2\nf-automacao\.chrome-dms\Default\Session Storage/MANIFEST-000001
+2026/06/27-19:03:26.108 3d4 Recovering log #8
+2026/06/27-19:03:26.111 3d4 Reusing old log C:\Users\bruno\Documents\neudinho_v2\nf-automacao\.chrome-dms\Default\Session Storage/000008.log 
+2026/06/27-19:12:22.618 3d08 Level-0 table #12: started
+2026/06/27-19:12:22.622 3d08 Level-0 table #12: 42733 bytes OK
+2026/06/27-19:12:22.624 3d08 Delete type=0 #8
+2026/06/27-19:12:22.624 3d08 Compacting 4@0 + 0@1 files
+2026/06/27-19:12:22.630 3d08 Generated table #13@0: 7 keys, 42151 bytes
+2026/06/27-19:12:22.630 3d08 Compacted 4@0 + 0@1 files => 42151 bytes
+2026/06/27-19:12:22.631 3d08 compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/06/27-19:12:22.632 3d08 Delete type=2 #3
+2026/06/27-19:12:22.632 3d08 Delete type=2 #6
+2026/06/27-19:12:22.633 3d08 Delete type=2 #9
+2026/06/27-19:12:22.633 3d08 Delete type=2 #12
